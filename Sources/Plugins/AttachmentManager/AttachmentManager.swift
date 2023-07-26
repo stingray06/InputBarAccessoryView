@@ -48,7 +48,7 @@ open class AttachmentManager: NSObject, InputPlugin {
     
     open lazy var attachmentView: AttachmentCollectionView = { [weak self] in
         let attachmentView = AttachmentCollectionView()
-        attachmentView.dataSource = self
+      //  attachmentView.dataSource = self
         attachmentView.delegate = self
         return attachmentView
     }()
@@ -145,7 +145,7 @@ open class AttachmentManager: NSObject, InputPlugin {
     
 }
 
-extension AttachmentManager: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension AttachmentManager: UICollectionViewDelegateFlowLayout {
     
     // MARK: - UICollectionViewDelegate
     
@@ -158,45 +158,45 @@ extension AttachmentManager: UICollectionViewDataSource, UICollectionViewDelegat
     
     // MARK: - UICollectionViewDataSource
     
-    final public func numberOfItems(inSection section: Int) -> Int {
-        return 1
-    }
+//    final public func numberOfItems(inSection section: Int) -> Int {
+//        return 1
+//    }
+//
+//    final public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return attachments.count + (showAddAttachmentCell ? 1 : 0)
+//    }
     
-    final public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return attachments.count + (showAddAttachmentCell ? 1 : 0)
-    }
-    
-    final public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if indexPath.row == attachments.count && showAddAttachmentCell {
-            return createAttachmentCell(in: collectionView, at: indexPath)
-        }
-        
-        let attachment = attachments[indexPath.row]
-        
-        if let cell = dataSource?.attachmentManager(self, cellFor: attachment, at: indexPath.row) {
-            return cell
-        } else {
-            
-            // Only images are supported by default
-            switch attachment {
-            case .image(let image):
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageAttachmentCell.reuseIdentifier, for: indexPath) as? ImageAttachmentCell else {
-                    fatalError()
-                }
-                cell.attachment = attachment
-                cell.indexPath = indexPath
-                cell.manager = self
-                cell.imageView.image = image
-                cell.imageView.tintColor = tintColor
-                cell.deleteButton.backgroundColor = tintColor
-                return cell
-            default:
-                return collectionView.dequeueReusableCell(withReuseIdentifier: AttachmentCell.reuseIdentifier, for: indexPath) as! AttachmentCell
-            }
-            
-        }
-    }
+//    final public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//
+//        if indexPath.row == attachments.count && showAddAttachmentCell {
+//            return createAttachmentCell(in: collectionView, at: indexPath)
+//        }
+//
+//        let attachment = attachments[indexPath.row]
+//
+//        if let cell = dataSource?.attachmentManager(self, cellFor: attachment, at: indexPath.row) {
+//            return cell
+//        } else {
+//
+//            // Only images are supported by default
+//            switch attachment {
+//            case .image(let image):
+//                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageAttachmentCell.reuseIdentifier, for: indexPath) as? ImageAttachmentCell else {
+//                    fatalError()
+//                }
+//                cell.attachment = attachment
+//                cell.indexPath = indexPath
+//                cell.manager = self
+//                cell.imageView.image = image
+//                cell.imageView.tintColor = tintColor
+//                cell.deleteButton.backgroundColor = tintColor
+//                return cell
+//            default:
+//                return collectionView.dequeueReusableCell(withReuseIdentifier: AttachmentCell.reuseIdentifier, for: indexPath) as! AttachmentCell
+//            }
+//
+//        }
+//    }
     
     // MARK: - UICollectionViewDelegateFlowLayout
     
