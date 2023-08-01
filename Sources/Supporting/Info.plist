@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Разрешить приложению доступ к камере? Это нужно приложению, чтобы вы могли делать фотографии для отправки собеседнику. Например, во время переписки вы можете нажать на кнопку для отправки файла, выбрать пункт Камера, сделать фото и тут же отправить его собеседнику.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
